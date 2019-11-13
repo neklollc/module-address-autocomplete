@@ -20,9 +20,6 @@
     "support": {
         "documentation": "http://docs.shipperhq.com"
     },
-    "require": {
-        "shipperhq/module-shipper": "^20.0"
-    },
     "autoload": {
         "files": [
             "src/registration.php"
