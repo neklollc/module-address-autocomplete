@@ -32,37 +32,25 @@
  * See COPYING.txt for license details.
  */
 
-namespace ShipperHQ\AddressAutocomplete\Model;
+namespace ShipperHQ\AddressAutocomplete\Helper;
 
-use Magento\Checkout\Model\ConfigProviderInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
 
-class AutocompleteConfigProvider implements ConfigProviderInterface
+class Data extends AbstractHelper
 {
     /**
-     * @var \ShipperHQ\AddressAutocomplete\Helper\Data
+     * Get Config Value
+     *
+     * @param $configField
+     *
+     * @return mixed
      */
-    private $helper;
-
-    /**
-     * @param \ShipperHQ\AddressAutocomplete\Helper\Data $helper
-     */
-    public function __construct(
-        \ShipperHQ\Shipper\AddressAutocomplete\Data $helper
-    ) {
-        $this->helper = $helper;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getConfig()
+    public function getConfigValue($configField, $store = null)
     {
-        $config['shipperhq_autocomplete'] = [
-            'active'        => $this->helper->getConfigValue('shipping/shipper_autocomplete/active'),
-            'api_key'  =>    $this->helper->getConfigValue('shipping/shipper_autocomplete/google_api_key'),
-            'use_geolocation'  =>    $this->helper->getConfigValue('shipping/shipper_autocomplete/use_geolocation'),
-            'use_long_postcode'  =>    $this->helper->getConfigValue('shipping/shipper_autocomplete/use_long_postcode')
-        ];
-        return $config;
+        return $this->scopeConfig->getValue(
+            $configField,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            $store
+        );
     }
 }
