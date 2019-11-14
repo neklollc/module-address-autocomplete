@@ -35,19 +35,20 @@
 namespace ShipperHQ\AddressAutocomplete\Model;
 
 use Magento\Checkout\Model\ConfigProviderInterface;
+use ShipperHQ\AddressAutocomplete\Helper\Data;
 
 class AutocompleteConfigProvider implements ConfigProviderInterface
 {
     /**
-     * @var \ShipperHQ\AddressAutocomplete\Helper\Data
+     * @var Data
      */
     private $helper;
 
     /**
-     * @param \ShipperHQ\AddressAutocomplete\Helper\Data $helper
+     * @param Data $helper
      */
     public function __construct(
-        \ShipperHQ\AddressAutocomplete\Helper\Data $helper
+        Data $helper
     ) {
         $this->helper = $helper;
     }
